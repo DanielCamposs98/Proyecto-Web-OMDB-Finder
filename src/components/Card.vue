@@ -2,7 +2,7 @@
   <div class="card mb-3" style="max-width: 540px;">
   <div class="row g-0">
     <div class="col-md-4">
-      <img :src="poster" class="img-fluid rounded-start" alt="Cartel de Pelicula">
+  <img v-bind:src="poster" class="img-fluid rounded-start" alt="Cartel de Pelicula"> 
     </div>
     <div class="col-md-8">
       <div class="card-body">

@@ -2,6 +2,7 @@
   <div class="home">
     <div class="form-floating mb-3" id="divComp">
       <input
+      v-model="palabra"
         type="text"
         class="form-control"
         id="txtNombre"
@@ -11,10 +12,18 @@
     </div>
 
     <div id="divBut">
-      <button type="button" id="btnBuscar" class="btn btn-outline-secondary" @click="evBuscar">
+      <button type="button" id="btnBuscar" class="btn btn-outline-secondary" @click="getPosts({palabra})">
         Buscar
       </button>
     </div>
+    <div v-for="p in posts" :key="p.imdbID">
+
+<router-link :to="`/Detalle/${p.imdbID}`">
+        <Card :id="p.imdbID "  :poster="p.Poster" :tipo="p.Type" :anio="p.Year" :titulo="p.Title"/>
+</router-link>
+
+
+       </div>
   </div>
 </template>
 
@@ -22,9 +31,9 @@
 // @ is an alias to /src
 
 
-import {mapState, mapActions} from 'vuex'
+import {mapState, mapActions, mapMutations} from 'vuex'
 
-import Card from "../components/Card.vue"
+import Card from "@/components/Card.vue"
 
 export default {
   name: "Inicio",
@@ -32,10 +41,11 @@ export default {
     Card,
   },
 computed: {
-  ...mapState(['posts'])
+  ...mapState(["posts"])
 },
 methods: {
-  ...mapActions(['getPosts'])
+  ...mapActions(["getPosts"]),
+  ...mapMutations("SET_POSTS")
 },
 
 }

@@ -10,16 +10,17 @@ export default new Vuex.Store({
     post : {}
   },
   mutations: {
-    SET_POSTS(state, posts){
-      state.posts = posts;
+    SET_POSTS : (state, pos) => {
+      state.posts = pos.Search;
     },
+    
     SET_POST(state, post){
       state.post= post;
     }
   },
   actions: {
-    getPosts( {commit}, {palabra}){
-      axios.get(`http://www.omdbapi.com/?s=${palabra}`)
+    getPosts( {commit}, { palabra }){
+      axios.get(`http://www.omdbapi.com/?s=${palabra}&apikey=31fa0edc&`)
       .then((res) => {
         commit("SET_POSTS" , res.data);
       })
