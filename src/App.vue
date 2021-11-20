@@ -1,8 +1,9 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <H1 id="txtHeader">OMDB Finder</H1>
+      <router-link to="/"></router-link> 
+      <router-link to="/about"></router-link>
     </div>
     <router-view/>
   </div>
@@ -19,6 +20,8 @@
 
 #nav {
   padding: 30px;
+ background: linear-gradient(to top, #2E4053 ,#85929E , #AEB6BF, #85929E, #2E4053);
+
 }
 
 #nav a {
@@ -29,4 +32,12 @@
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+
+
+#txtHeader{
+  color: whitesmoke;
+  background-color : transparent;
+}
+
+
 </style>

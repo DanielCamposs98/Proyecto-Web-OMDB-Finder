@@ -7,13 +7,17 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     posts : [],
-    post : {}
+    post : {},
+    numPosts: {},
   },
   mutations: {
     SET_POSTS : (state, pos) => {
       state.posts = pos.Search;
     },
-    
+
+    SET_NUMPOSTS : (state, pos) => {
+      state.posts = pos.totalResults;
+    },
     SET_POST(state, post){
       state.post= post;
     }
@@ -31,6 +35,14 @@ export default new Vuex.Store({
       axios.get(`http://www.omdbapi.com/?i=${id}&apikey=31fa0edc&`)
       .then(Response => {
         commit('SET_POST', Response.data);
+      })
+      .catch(error => console.log(error));
+    },
+
+    getNumPosts({commit}, {palabra}){
+      axios.get(`http://www.omdbapi.com/?s=${palabra}&apikey=31fa0edc&`)
+      .then(Response => {
+        commit('SET_NUMPOSTS', Response.data);
       })
       .catch(error => console.log(error));
     },
